@@ -344,7 +344,12 @@ public class TextBuddy {
 	/*
 	 * This method will search for the word and print out the results
 	 */
-	private static String searchAndPrint(String searchWord){
+	private static String searchAndPrint(String[] cmd){
+		if (cmd.length != 2){
+			return "Invalid arguments";
+		}
+		
+		String searchWord = cmd[1];
 		String filteredLines = new String();
 		for(int i = 0; i < strList.size(); i++){
 			if(compareString(searchWord, strList.get(0))){
