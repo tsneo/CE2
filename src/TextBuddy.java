@@ -158,7 +158,7 @@ public class TextBuddy {
 		exitIfNoArgument(args);
 
 		// get the filename
-		filename = new String(args[0]);
+		filename = args[0];
 
 		// Call to check for file format
 		exitIfWrongFileFormat();
