@@ -340,12 +340,19 @@ public class TextBuddy {
 	/*
 	 * This method will search for the word and print out the results
 	 */
-	private static void searchAndPrint(String searchWord){
+	private static String searchAndPrint(String searchWord){
+		String filteredLines = new String();
 		for(int i = 0; i < strList.size(); i++){
 			if(compareString(searchWord, strList.get(0))){
-				printMessage(strList.get(0));
+				filteredLines += strList.get(0) + "\n";
 			}
 		}
+		if(filteredLines.isEmpty()){
+			return "No matches";
+		}
+		
+		filteredLines = filteredLines.substring(0, filteredLines.length() -1);
+		return filteredLines;
 	}
 	
 	/*
