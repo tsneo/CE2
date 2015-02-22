@@ -138,6 +138,10 @@ public class TextBuddy {
 			return Command_Types.CLEAR;
 		} else if (commandTypeString[0].equalsIgnoreCase("exit")) {
 			return Command_Types.EXIT;
+		} else if (commandTypeString[0].equalsIgnoreCase("search")) {
+			return Command_Types.SEARCH;
+		} else if (commandTypeString[0].equalsIgnoreCase("sort")) {
+			return Command_Types.SORT;
 		} else {
 			return Command_Types.INVALID;
 		}
