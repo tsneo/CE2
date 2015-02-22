@@ -247,7 +247,7 @@ public class TextBuddy {
 	/*
 	 * This method will remove a line from the text file
 	 */
-	private static void deleteText(String[] inputCmd) {
+	private static String deleteText(String[] inputCmd) {
 		int listIndex = -1;
 
 		/*
@@ -255,7 +255,7 @@ public class TextBuddy {
 		 * another one is the index
 		 */
 		if (inputCmd.length != 2){
-			return;
+			return "Invalid arguments";
 		}
 			
 		listIndex = Integer.parseInt(inputCmd[1]);
@@ -267,8 +267,10 @@ public class TextBuddy {
 			String removedText = strList.get(listIndex - 1);
 			strList.remove(listIndex - 1);
 			writeToFile();
-			printMessage(String.format(MESSAGE_DELETED, filename, removedText));
+			return String.format(MESSAGE_DELETED, filename, removedText);
 		}
+		
+		return "No such item exist";
 
 	}
 
