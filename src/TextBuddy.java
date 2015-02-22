@@ -255,8 +255,6 @@ public class TextBuddy {
 	 * This method will remove a line from the text file
 	 */
 	private static String deleteText(String[] inputCmd) {
-		int listIndex = -1;
-
 		/*
 		 * This will check if the argument has only 2, 1 is delete word and
 		 * another one is the index
@@ -265,7 +263,7 @@ public class TextBuddy {
 			return "Invalid arguments";
 		}
 			
-		listIndex = Integer.parseInt(inputCmd[1]);
+		int listIndex = Integer.parseInt(inputCmd[1]);
 
 		/*
 		 * This checks for the position of the arraylist
