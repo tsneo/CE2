@@ -335,4 +335,15 @@ public class TextBuddy {
 		System.out.println(message);
 		System.exit(0);
 	}
+	
+	/*
+	 * This method will search for the word and print out the results
+	 */
+	private static void searchAndPrint(String searchWord){
+		for(int i = 0; i < strList.size(); i++){
+			if(compareString(searchWord, strList.get(0))){
+				printMessage(strList.get(0));
+			}
+		}
+	}
 }
