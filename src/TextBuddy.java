@@ -215,7 +215,7 @@ public class TextBuddy {
 	}
 
 	// Add text to file
-	private static void addText(String[] inputArr) {
+	private static String addText(String[] inputArr) {
 		String txtToAdd = "";// declare a string to put the words into it
 
 		// loop and write it to txtToAdd
@@ -234,7 +234,7 @@ public class TextBuddy {
 		// call to write arraylist to text file
 		writeToFile();
 		// call to print the added item message
-		printMessage(String.format(MESSAGE_ADDED, filename, txtToAdd));
+		return String.format(MESSAGE_ADDED, filename, txtToAdd);
 	}
 
 	/*
