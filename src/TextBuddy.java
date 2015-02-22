@@ -144,7 +144,7 @@ public class TextBuddy {
 	}
 
 	// Check if file exists and load it to a list
-	private static void checkAndLoadFile(String[] args) {
+	public static void checkAndLoadFile(String[] args) {
 		// Call to check argument
 		exitIfNoArgument(args);
 
