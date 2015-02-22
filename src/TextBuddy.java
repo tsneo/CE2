@@ -351,7 +351,7 @@ public class TextBuddy {
 			return "No matches";
 		}
 		
-		filteredLines = filteredLines.substring(0, filteredLines.length() -1);
+		filteredLines = filteredLines.substring(0, filteredLines.length() -2);
 		return filteredLines;
 	}
 	
