@@ -68,7 +68,7 @@ public class TextBuddy {
 	 * This will store the list of commands
 	 */
 	public enum Command_Types {
-		ADD, DELETE, DISPLAY, CLEAR, EXIT, INVALID
+		ADD, DELETE, DISPLAY, CLEAR, EXIT, INVALID, SEARCH, SORT
 	}
 
 	public static void main(String[] args) {
