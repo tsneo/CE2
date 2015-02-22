@@ -275,13 +275,18 @@ public class TextBuddy {
 	}
 
 	// display the text
-	private static void display() {
+	private static String display() {
 		if (strList.isEmpty()){
-			printMessage(String.format(MESSAGE_FILEISEMPTY, filename));
+			return String.format(MESSAGE_FILEISEMPTY, filename);
 		}
+		String displayText = new String();
 		for (int i = 0; i < strList.size(); i++) {
-			System.out.println((i + 1) + ". " + strList.get(i).toString());
+			displayText += (i + 1) + ". " + strList.get(i).toString();
+			if((i+1) != strList.size()){
+				displayText += "\n";
+			}
 		}
+		return displayText;
 
 	}
 
