@@ -291,16 +291,17 @@ public class TextBuddy {
 	}
 
 	// clear all contents
-	private static void clearContents() {
+	private static String clearContents() {
 		strList.clear();// clear all contents from arraylist
 		try {
 			FileWriter fw = new FileWriter(filename);// setup a file writer with
 														// nothing inside
 			fw.close();
-			printMessage(String.format(MESSAGE_CLEARED, filename));
 		} catch (IOException e) {
 			printErrorMessageAndExit(e.toString());
+			return "Failed to clear";
 		}
+		return String.format(MESSAGE_CLEARED, filename);
 	}
 
 	// write contents to the text file
