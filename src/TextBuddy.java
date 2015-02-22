@@ -111,7 +111,7 @@ public class TextBuddy {
 		case CLEAR:
 			return clearContents();
 		case SEARCH:
-			return searchAndPrint(cmd);
+			return searchAndReturnList(cmd);
 		case SORT:
 			return sortArrayList();
 		case INVALID:
@@ -346,7 +346,7 @@ public class TextBuddy {
 	/*
 	 * This method will search for the word and print out the results
 	 */
-	private static String searchAndPrint(String[] cmd){
+	private static String searchAndReturnList(String[] cmd){
 		if (cmd.length != 2){
 			return "Invalid arguments";
 		}
