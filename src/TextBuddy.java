@@ -191,11 +191,11 @@ public class TextBuddy {
 	// and exit if incorrect
 	private static void exitIfWrongFileFormat() {
 		boolean isFileContainsADot = filename.contains(".");
-		int isFileExtLengthFour = filename.length() - filename.indexOf(".");
+		int fileExtLength = filename.length() - filename.indexOf(".");
 		String isFileExtCorrect = filename.substring(filename.length() - 4,
 				filename.length());
 
-		if (!(isFileContainsADot) || !(isFileExtLengthFour == 4)
+		if (!(isFileContainsADot) || !(fileExtLength == 4)
 				|| !(isFileExtCorrect.equals(".txt"))) {
 			printErrorMessageAndExit("Wrong file format");
 		}
