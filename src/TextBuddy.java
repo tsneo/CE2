@@ -110,6 +110,10 @@ public class TextBuddy {
 			return display();
 		case CLEAR:
 			return clearContents();
+		case SEARCH:
+			return searchAndPrint(cmd);
+		case SORT:
+			return sortArrayList();
 		case INVALID:
 			return "Invalid command";
 		case EXIT:
@@ -375,7 +379,11 @@ public class TextBuddy {
 	/*
 	 * This method sort the arrayList
 	 */
-	private static void sortArrayList(){
+	private static String sortArrayList(){
+		if(strList.size() == 0){
+			return "There is no items to sort";
+		}
 		Collections.sort(strList);
+		return "Sort complete";
 	}
 }
