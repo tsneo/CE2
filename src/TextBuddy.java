@@ -354,4 +354,11 @@ public class TextBuddy {
 	private static boolean compareString(String searchWord, String compareWord){
 		return compareWord.contains(searchWord);
 	}
+	
+	/*
+	 * This method sort the arrayList
+	 */
+	private static void sortArrayList(){
+		Collections.sort(strList);
+	}
 }
