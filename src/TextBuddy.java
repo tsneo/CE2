@@ -92,35 +92,33 @@ public class TextBuddy {
 		// user will enter command here until exit is being read
 		while (true) {
 			inputCmd = scanner.nextLine().trim().split(" ");
-			Command_Types commandType = determineCommandType(inputCmd);
-
-			switch (commandType) {
-			case ADD:
-				addText(inputCmd);
-				break;
-			case DELETE:
-				deleteText(inputCmd);
-				break;
-			case DISPLAY:
-				display();
-				break;
-			case CLEAR:
-				clearContents();
-				break;
-			case INVALID:
-				printMessage("Invalid command");
-				break;
-			case EXIT:
-				System.exit(0);
-				break;
-			default:
-				// throw an error if the command is not recognized
-				printMessage("Unrecognized command type");
-				break;
-			}
-
+			printMessage(executeCommand(inputCmd));
 			System.out.print("command: ");
 		}
+	}
+	
+	public static String executeCommand(String[] cmd){
+		Command_Types commandType = determineCommandType(cmd);
+
+		switch (commandType) {
+		case ADD:
+			return addText(cmd);
+		case DELETE:
+			return deleteText(cmd);
+		case DISPLAY:
+			return display();
+		case CLEAR:
+			return clearContents();
+		case INVALID:
+			return "Invalid command";
+		case EXIT:
+			System.exit(0);
+			break;
+		default:
+			// throw an error if the command is not recognized
+			return "Unrecognized command type";
+		}
+		return "No command";
 	}
 
 	// This method determine whether it is a command type
