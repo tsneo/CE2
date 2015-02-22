@@ -356,15 +356,15 @@ public class TextBuddy {
 		String searchWord = cmd[1];
 		String filteredLines = new String();
 		for(int i = 0; i < strList.size(); i++){
-			if(compareString(searchWord, strList.get(0))){
-				filteredLines += strList.get(0) + "\n";
+			if(compareString(searchWord, strList.get(i))){
+				filteredLines += strList.get(i) + "\n";
 			}
 		}
 		if(filteredLines.isEmpty()){
 			return "No matches";
 		}
 		
-		filteredLines = filteredLines.substring(0, filteredLines.length() -2);
+		filteredLines = filteredLines.substring(0, filteredLines.length() -1);
 		return filteredLines;
 	}
 	
@@ -373,7 +373,7 @@ public class TextBuddy {
 	 * true if there is a match, false if not
 	 */
 	private static boolean compareString(String searchWord, String compareWord){
-		return compareWord.contains(searchWord);
+		return compareWord.toLowerCase().contains(searchWord.toLowerCase());
 	}
 	
 	/*
@@ -384,6 +384,7 @@ public class TextBuddy {
 			return "There is no items to sort";
 		}
 		Collections.sort(strList);
+		writeToFile();
 		return "Sort complete";
 	}
 }
