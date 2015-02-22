@@ -346,4 +346,12 @@ public class TextBuddy {
 			}
 		}
 	}
+	
+	/*
+	 * This method compare the string with the given word and return
+	 * true if there is a match, false if not
+	 */
+	private static boolean compareString(String searchWord, String compareWord){
+		return compareWord.contains(searchWord);
+	}
 }
