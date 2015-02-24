@@ -52,7 +52,7 @@ public class TextBuddy {
 	private static ArrayList<String> strList = new ArrayList<String>();
 
 	// This string will store the filename from the argument
-	private static String filename;
+	//private static String filename;
 
 	// List of Display Messages for welcome message, add, delete, clear and file
 	// empty
@@ -74,46 +74,46 @@ public class TextBuddy {
 	public static void main(String[] args) {
 
 		// call method to check if file exists
-		checkAndLoadFile(args);
+		String fileName = checkAndLoadFile(args);
 
 		// print out welcome message
-		printMessage(String.format(MESSAGE_WELCOME, filename));
+		printMessage(String.format(MESSAGE_WELCOME, fileName));
 
 		// call method for user entering commands
-		commandExecutionUntilExit();
+		commandExecutionUntilExit(fileName);
 	}
 
 	/*
 	 * This method set up the Command Interface and exit if the user enter exit
 	 * command
 	 */
-	private static void commandExecutionUntilExit() {
+	private static void commandExecutionUntilExit(String fileName) {
 		String[] inputCmd;
 		System.out.print("command: ");
 		// user will enter command here until exit is being read
 		while (true) {
 			inputCmd = scanner.nextLine().trim().split(" ");
-			printMessage(executeCommand(inputCmd));
+			printMessage(executeCommand(fileName, inputCmd));
 			System.out.print("command: ");
 		}
 	}
 	
-	public static String executeCommand(String[] cmd){
+	public static String executeCommand(String fileName, String[] cmd){
 		Command_Types commandType = determineCommandType(cmd);
 
 		switch (commandType) {
 		case ADD:
-			return addText(cmd);
+			return addText(fileName, cmd);
 		case DELETE:
-			return deleteText(cmd);
+			return deleteText(fileName, cmd);
 		case DISPLAY:
-			return display();
+			return display(fileName);
 		case CLEAR:
-			return clearContents();
+			return clearContents(fileName);
 		case SEARCH:
 			return searchAndReturnList(cmd);
 		case SORT:
-			return sortArrayList();
+			return sortArrayList(fileName);
 		case INVALID:
 			return "Invalid command";
 		case EXIT:
@@ -153,24 +153,24 @@ public class TextBuddy {
 	}
 
 	// Check if file exists and load it to a list
-	public static void checkAndLoadFile(String[] args) {
+	public static String checkAndLoadFile(String[] args) {
 		// Call to check argument
 		exitIfNoArgument(args);
 
 		// get the filename
-		filename = args[0];
+		String fileName = args[0];
 
 		// Call to check for file format
-		exitIfWrongFileFormat();
+		exitIfWrongFileFormat(fileName);
 
-		File filepath = new File(filename);
+		File filepath = new File(fileName);
 
 		/*
 		 * Check if the file exists, it will load the data into the arraylist
 		 * else it will create a new file
 		 */
 		if (filepath.exists() && !filepath.isDirectory()) {
-			loadToArrayList();
+			loadToArrayList(fileName);
 		} else {
 			try {
 				filepath.createNewFile();
@@ -178,6 +178,7 @@ public class TextBuddy {
 				printErrorMessageAndExit(e.toString());
 			}
 		}
+		return fileName;
 	}
 
 	// This method will check whether there is an argument input
@@ -189,11 +190,11 @@ public class TextBuddy {
 
 	// This method will check if the file is in correct format
 	// and exit if incorrect
-	private static void exitIfWrongFileFormat() {
-		boolean isFileContainsADot = filename.contains(".");
-		int fileExtLength = filename.length() - filename.indexOf(".");
-		String isFileExtCorrect = filename.substring(filename.length() - 4,
-				filename.length());
+	private static void exitIfWrongFileFormat(String fileName) {
+		boolean isFileContainsADot = fileName.contains(".");
+		int fileExtLength = fileName.length() - fileName.indexOf(".");
+		String isFileExtCorrect = fileName.substring(fileName.length() - 4,
+				fileName.length());
 
 		if (!(isFileContainsADot) || !(fileExtLength == 4)
 				|| !(isFileExtCorrect.equals(".txt"))) {
@@ -203,9 +204,9 @@ public class TextBuddy {
 	}
 
 	// This method will load the contents from the text file to ArrayList
-	private static void loadToArrayList() {
+	private static void loadToArrayList(String fileName) {
 		try {
-			FileReader reader = new FileReader(filename);
+			FileReader reader = new FileReader(fileName);
 			BufferedReader bufferRead = new BufferedReader(reader);
 			String txtLine = "";
 			try {
@@ -222,7 +223,11 @@ public class TextBuddy {
 	}
 
 	// Add text to file
-	private static String addText(String[] inputArr) {
+	private static String addText(String fileName, String[] inputArr) {
+		if(inputArr.length < 2){
+			return "No text to add";
+		}
+		
 		String txtToAdd = "";// declare a string to put the words into it
 
 		// loop and write it to txtToAdd
@@ -239,9 +244,9 @@ public class TextBuddy {
 		addToArrayList(txtToAdd);
 
 		// call to write arraylist to text file
-		writeToFile();
+		writeToFile(fileName);
 		// call to print the added item message
-		return String.format(MESSAGE_ADDED, filename, txtToAdd);
+		return String.format(MESSAGE_ADDED, fileName, txtToAdd);
 	}
 
 	/*
@@ -254,7 +259,12 @@ public class TextBuddy {
 	/*
 	 * This method will remove a line from the text file
 	 */
-	private static String deleteText(String[] inputCmd) {
+	/**
+	 * 
+	 * @param inputCmd
+	 * @return
+	 */
+	private static String deleteText(String fileName, String[] inputCmd) {
 		/*
 		 * This will check if the argument has only 2, 1 is delete word and
 		 * another one is the index
@@ -271,18 +281,21 @@ public class TextBuddy {
 		if (listIndex > 0 && listIndex <= strList.size()) {
 			String removedText = strList.get(listIndex - 1);
 			strList.remove(listIndex - 1);
-			writeToFile();
-			return String.format(MESSAGE_DELETED, filename, removedText);
+			writeToFile(fileName);
+			return String.format(MESSAGE_DELETED, fileName, removedText);
 		}
 		
 		return "No such item exist";
 
 	}
 
-	// display the text
-	private static String display() {
+	/**
+	 * 
+	 * @return
+	 */
+	private static String display(String fileName) {
 		if (strList.isEmpty()){
-			return String.format(MESSAGE_FILEISEMPTY, filename);
+			return String.format(MESSAGE_FILEISEMPTY, fileName);
 		}
 		String displayText = new String();
 		for (int i = 0; i < strList.size(); i++) {
@@ -296,25 +309,32 @@ public class TextBuddy {
 	}
 
 	// clear all contents
-	private static String clearContents() {
-		strList.clear();// clear all contents from arraylist
+	public static String clearContents(String fileName) {
+		clearArrayList();
 		try {
-			FileWriter fw = new FileWriter(filename);// setup a file writer with
+			FileWriter fw = new FileWriter(fileName);// setup a file writer with
 														// nothing inside
 			fw.close();
 		} catch (IOException e) {
 			printErrorMessageAndExit(e.toString());
 			return "Failed to clear";
 		}
-		return String.format(MESSAGE_CLEARED, filename);
+		return String.format(MESSAGE_CLEARED, fileName);
+	}
+	
+	/**
+	 * This method clear the contents from the AL
+	 */
+	private static void clearArrayList(){
+		strList.clear();// clear all contents from arraylist
 	}
 
 	// write contents to the text file
-	private static void writeToFile() {
+	private static void writeToFile(String fileName) {
 
 		// Add the string to the file
 		try {
-			FileWriter fw = new FileWriter(filename);// setup a file writer
+			FileWriter fw = new FileWriter(fileName);// setup a file writer
 			fw.flush();
 			BufferedWriter bw = new BufferedWriter(fw);
 			for (int i = 0; i < strList.size(); i++) {
@@ -379,12 +399,12 @@ public class TextBuddy {
 	/*
 	 * This method sort the arrayList
 	 */
-	private static String sortArrayList(){
+	private static String sortArrayList(String fileName){
 		if(strList.size() == 0){
 			return "There is no items to sort";
 		}
 		Collections.sort(strList);
-		writeToFile();
+		writeToFile(fileName);
 		return "Sort complete";
 	}
 }
