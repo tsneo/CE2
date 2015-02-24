@@ -353,9 +353,11 @@ public class TextBuddy {
 		
 		String searchWord = cmd[1];
 		String filteredLines = new String();
+		int indexNum = 1;
 		for(int i = 0; i < strList.size(); i++){
 			if(compareString(searchWord, strList.get(i))){
-				filteredLines += strList.get(i) + "\n";
+				filteredLines += indexNum + ". " + strList.get(i) + "\n";
+				indexNum++;
 			}
 		}
 		if(filteredLines.isEmpty()){
