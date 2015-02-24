@@ -111,7 +111,7 @@ public class TextBuddyTest {
 		String[] addCommands2 = {"add", "jumped over the moon"};
 		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
 		String[] command = {"clear", "abc"};
-		String expected = "Invalid clear";
+		String expected = "Invalid command for clear. Please remove the contents after the word 'clear'";
 		assertEquals(expected, TextBuddy.executeCommand("mytestfile.txt", command));
 	}
 	
@@ -162,13 +162,14 @@ public class TextBuddyTest {
 		String[] addCommands2 = {"add", "jumped over the moon"};
 		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
 		String[] command = {"search"};
-		String expected = "Invalid arguments";
+		String expected = "Invalid arguments for search";
 		assertEquals(expected, TextBuddy.executeCommand("mytestfile.txt", command));
 	}
 	
 	@After
 	public void tearDown(){
-		TextBuddy.clearContents("mytestfile.txt");
+		String[] command = {"clear"};
+		TextBuddy.clearContents("mytestfile.txt", command);
 	}
 
 

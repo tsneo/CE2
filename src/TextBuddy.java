@@ -107,13 +107,13 @@ public class TextBuddy {
 		case DELETE:
 			return deleteText(fileName, cmd);
 		case DISPLAY:
-			return display(fileName);
+			return display(fileName, cmd);
 		case CLEAR:
-			return clearContents(fileName);
+			return clearContents(fileName, cmd);
 		case SEARCH:
 			return searchAndReturnList(cmd);
 		case SORT:
-			return sortArrayList(fileName);
+			return sortArrayList(fileName, cmd);
 		case INVALID:
 			return "Invalid command";
 		case EXIT:
@@ -256,11 +256,9 @@ public class TextBuddy {
 		strList.add(text);
 	}
 
-	/*
-	 * This method will remove a line from the text file
-	 */
+
 	/**
-	 * 
+	 * This method will remove a line from the text file
 	 * @param inputCmd
 	 * @return
 	 */
@@ -269,7 +267,7 @@ public class TextBuddy {
 		 * This will check if the argument has only 2, 1 is delete word and
 		 * another one is the index
 		 */
-		if (inputCmd.length != 2){
+		if (inputCmd.length != 2 || !IsStringAnInteger(inputCmd[1])){
 			return "Invalid arguments";
 		}
 			
@@ -288,12 +286,28 @@ public class TextBuddy {
 		return "No such item exist";
 
 	}
+	
+	private static boolean IsStringAnInteger(String inputStr){
+		try { 
+	        Integer.parseInt(inputStr); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    }
+
+		return true;
+	}
 
 	/**
-	 * 
-	 * @return
+	 * This will display the list of text stored in the file
+	 * @param fileName the filename which use to display as a text
+	 * @param cmd the cmd input for verification of the command
+	 * @return a list of text
 	 */
-	private static String display(String fileName) {
+	private static String display(String fileName, String[] cmd) {
+		if(cmd.length != 1){
+			return "Invalid command for display. Please remove the contents after the word 'display'";
+		}
+		
 		if (strList.isEmpty()){
 			return String.format(MESSAGE_FILEISEMPTY, fileName);
 		}
@@ -309,7 +323,11 @@ public class TextBuddy {
 	}
 
 	// clear all contents
-	public static String clearContents(String fileName) {
+	public static String clearContents(String fileName, String[] cmd) {
+		if(cmd.length != 1){
+			return "Invalid command for clear. Please remove the contents after the word 'clear'";
+		}
+		
 		clearArrayList();
 		try {
 			FileWriter fw = new FileWriter(fileName);// setup a file writer with
@@ -368,7 +386,7 @@ public class TextBuddy {
 	 */
 	private static String searchAndReturnList(String[] cmd){
 		if (cmd.length != 2){
-			return "Invalid arguments";
+			return "Invalid arguments for search";
 		}
 		
 		String searchWord = cmd[1];
@@ -399,10 +417,15 @@ public class TextBuddy {
 	/*
 	 * This method sort the arrayList
 	 */
-	private static String sortArrayList(String fileName){
+	private static String sortArrayList(String fileName, String[] cmd){
+		if(cmd.length != 1){
+			return "Invalid command for sort. Please remove the contents after the word 'sort'";
+		}
+		
 		if(strList.size() == 0){
 			return "There is no items to sort";
 		}
+		
 		Collections.sort(strList);
 		writeToFile(fileName);
 		return "Sort complete";
