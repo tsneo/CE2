@@ -1,6 +1,0 @@
-ntu
-nus
-nyp
-sim
-smu
-sp
