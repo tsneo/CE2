@@ -10,6 +10,9 @@
  * from it.
  * For example, when you execute the file with the text file 'mytextfile.txt'
  * 
+ * In addition, it can perform sorting and search where the sorting is to sort
+ * them in alphabetical order and search is restricted to one word.
+ * 
  Welcome to TextBuddy. mytextfile.txt is ready to use
  command: add little brown fox
  added to mytextfile.txt: "little brown fox"
