@@ -175,7 +175,18 @@ public class TextBuddyTest {
 		String[] addCommands2 = {"add", "jumped over the moon"};
 		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
 		String[] command = {"search"};
-		String expected = "Invalid arguments for search";
+		String expected = "Invalid arguments for search. Please enter a word after the 'search' word.";
+		assertEquals(expected, TextBuddy.executeCommand("mytestfile.txt", command));
+	}
+	
+	@Test
+	public void testSearchMoreThanTwoArgs(){
+		String[] addCommands = {"add", "little brown fox"};
+		TextBuddy.executeCommand("mytestfile.txt", addCommands);
+		String[] addCommands2 = {"add", "jumped over the moon"};
+		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] command = {"search", "word", "abc"};
+		String expected = "Invalid arguments for search. Please enter a word after the 'search' word.";
 		assertEquals(expected, TextBuddy.executeCommand("mytestfile.txt", command));
 	}
 	

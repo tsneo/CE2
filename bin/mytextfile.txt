@@ -1,4 +1,6 @@
 ntu
 nus
+nyp
+sim
 smu
-sutd
+sp

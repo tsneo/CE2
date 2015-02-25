@@ -444,7 +444,7 @@ public class TextBuddy {
 	 */
 	private static String searchAndReturnList(String[] cmd){
 		if (cmd.length != 2){
-			return "Invalid arguments for search";
+			return "Invalid arguments for search. Please enter a word after the 'search' word.";
 		}
 		
 		String searchWord = cmd[1];
