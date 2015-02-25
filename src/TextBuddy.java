@@ -310,7 +310,7 @@ public class TextBuddy {
 		/*
 		 * This checks for the position of the arraylist
 		 */
-		if (listIndex > 0 && listIndex <= strList.size()) {
+		if ((listIndex -1) >= 0 && (listIndex-1) < strList.size()) {
 			String removedText = strList.get(listIndex - 1);
 			strList.remove(listIndex - 1);
 			writeToFile(fileName);
