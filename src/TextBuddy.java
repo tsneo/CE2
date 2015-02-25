@@ -197,6 +197,7 @@ public class TextBuddy {
 				printErrorMessageAndExit(e.toString());
 			}
 		}
+		
 		return fileName;
 	}
 
@@ -300,7 +301,6 @@ public class TextBuddy {
 	 * @return as a String. Invalid if command is in wrong format, success message or no such item.
 	 */
 	private static String deleteText(String fileName, String[] inputCmd) {
-
 		if (inputCmd.length != 2 || !IsStringAnInteger(inputCmd[1])){
 			return "Invalid arguments";
 		}
@@ -332,7 +332,7 @@ public class TextBuddy {
 	    } catch(NumberFormatException e) { 
 	        return false; 
 	    }
-
+		
 		return true;
 	}
 
@@ -350,15 +350,17 @@ public class TextBuddy {
 		if (strList.isEmpty()){
 			return String.format(MESSAGE_FILEISEMPTY, fileName);
 		}
+		
 		String displayText = new String();
+		
 		for (int i = 0; i < strList.size(); i++) {
 			displayText += (i + 1) + ". " + strList.get(i).toString();
 			if((i+1) != strList.size()){
 				displayText += "\n";
 			}
 		}
+		
 		return displayText;
-
 	}
 
 	/**
@@ -373,6 +375,7 @@ public class TextBuddy {
 		}
 		
 		clearArrayList();
+		
 		try {
 			FileWriter fw = new FileWriter(fileName);// setup a file writer with
 														// nothing inside
@@ -381,6 +384,7 @@ public class TextBuddy {
 			printErrorMessageAndExit(e.toString());
 			return "Failed to clear";
 		}
+		
 		return String.format(MESSAGE_CLEARED, fileName);
 	}
 	
@@ -396,7 +400,6 @@ public class TextBuddy {
 	 * @param fileName an filename for saving
 	 */
 	private static void writeToFile(String fileName) {
-
 		// Add the string to the file
 		try {
 			FileWriter fw = new FileWriter(fileName);// setup a file writer
@@ -435,6 +438,7 @@ public class TextBuddy {
 	/**
 	 * This method will search for the word and return the list of text
 	 * The search criteria will be if the given search string contains inside the list of text
+	 * The search will only search 1 word
 	 * @param cmd contains the command search with the search criteria
 	 * @return a list of text as a string. Invalid if command is in wrong format else no matches.
 	 */
@@ -457,6 +461,7 @@ public class TextBuddy {
 		}
 		
 		filteredLines = filteredLines.substring(0, filteredLines.length() -1);
+		
 		return filteredLines;
 	}
 	
@@ -488,6 +493,7 @@ public class TextBuddy {
 		
 		Collections.sort(strList);
 		writeToFile(fileName);
+		
 		return "Sort complete";
 	}
 }
