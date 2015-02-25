@@ -301,7 +301,7 @@ public class TextBuddy {
 	 * @return as a String. Invalid if command is in wrong format, success message or no such item.
 	 */
 	private static String deleteText(String fileName, String[] inputCmd) {
-		if (inputCmd.length != 2 || !IsStringAnInteger(inputCmd[1])){
+		if (inputCmd.length != 2 || !isStringAnInteger(inputCmd[1])){
 			return "Invalid arguments";
 		}
 			
@@ -326,7 +326,7 @@ public class TextBuddy {
 	 * @param inputStr the string to be converted
 	 * @return true if can be converted, else false
 	 */
-	private static boolean IsStringAnInteger(String inputStr){
+	private static boolean isStringAnInteger(String inputStr){
 		try { 
 	        Integer.parseInt(inputStr); 
 	    } catch(NumberFormatException e) { 
