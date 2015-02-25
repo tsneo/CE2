@@ -300,10 +300,7 @@ public class TextBuddy {
 	 * @return as a String. Invalid if command is in wrong format, success message or no such item.
 	 */
 	private static String deleteText(String fileName, String[] inputCmd) {
-		/*
-		 * This will check if the argument has only 2, 1 is delete word and
-		 * another one is the index
-		 */
+
 		if (inputCmd.length != 2 || !IsStringAnInteger(inputCmd[1])){
 			return "Invalid arguments";
 		}
