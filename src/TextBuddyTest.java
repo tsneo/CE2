@@ -134,6 +134,19 @@ public class TextBuddyTest {
 	}
 	
 	@Test
+	public void testSortRegularWithDisplay(){
+		String[] addCommands = {"add", "little brown fox"};
+		TextBuddy.executeCommand("mytestfile.txt", addCommands);
+		String[] addCommands2 = {"add", "jumped over the moon"};
+		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] commandSort = {"sort"};
+		TextBuddy.executeCommand("mytestfile.txt", commandSort);
+		String[] commandDisplay = {"display"};
+		String expected = "1. jumped over the moon\n2. little brown fox";
+		assertEquals(expected, TextBuddy.executeCommand("mytestfile.txt", commandDisplay));
+	}
+	
+	@Test
 	public void testSearchRegular(){
 		String[] addCommands = {"add", "little brown fox"};
 		TextBuddy.executeCommand("mytestfile.txt", addCommands);
