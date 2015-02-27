@@ -400,7 +400,7 @@ public class TextBuddy {
 	 * @return as a String. Invalid if command is in wrong format, success
 	 *         message if success.
 	 */
-	public static String clearContents(String fileName, String[] cmd) {
+	private static String clearContents(String fileName, String[] cmd) {
 		if (cmd.length != 1) {
 			return "Invalid command for clear. Please remove the contents after the word 'clear'";
 		}
@@ -421,8 +421,9 @@ public class TextBuddy {
 
 	/**
 	 * This method clear the contents from the AL
+	 * The access modifier is public for unit testing
 	 */
-	private static void clearArrayList() {
+	public static void clearArrayList() {
 		strList.clear();
 	}
 

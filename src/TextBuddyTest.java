@@ -1,5 +1,7 @@
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -208,8 +210,9 @@ public class TextBuddyTest {
 
 	@After
 	public void tearDown() {
-		String[] command = { "clear" };
-		TextBuddy.clearContents("mytestfile.txt", command);
+		TextBuddy.clearArrayList();
+		File txtFile = new File("mytestfile.txt");
+		txtFile.delete();
 	}
 
 }
