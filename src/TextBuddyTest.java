@@ -31,10 +31,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testDeleteRegular() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 
 		String[] command = { "delete", "2" };
 		String expected = "deleted from mytestfile.txt: \"jumped over the moon\"";
@@ -44,10 +44,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testDeleteOutOfRangeIndex() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 
 		String[] command = { "delete", "5" };
 		String expected = "No such item exist";
@@ -57,10 +57,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testDeleteAlphanumeric() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 
 		String[] command = { "delete", "3cce wefw" };
 		String expected = "Invalid arguments";
@@ -70,10 +70,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testDeleteEmpty() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 
 		String[] command = { "delete" };
 		String expected = "Invalid arguments";
@@ -83,10 +83,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testDisplay() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 
 		String[] command = { "display" };
 		String expected = "1. little brown fox\n2. jumped over the moon";
@@ -104,10 +104,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testClearRegular() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 		String[] command = { "clear" };
 		String expected = "all content deleted from mytestfile.txt";
 		assertEquals(expected,
@@ -116,10 +116,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testClearWithArguments() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 		String[] command = { "clear", "abc" };
 		String expected = "Invalid command for clear. Please remove the contents after the word 'clear'";
 		assertEquals(expected,
@@ -128,10 +128,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testSortRegular() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 		String[] command = { "sort" };
 		String expected = "Sort complete";
 		assertEquals(expected,
@@ -148,10 +148,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testSortRegularWithDisplay() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 		String[] commandSort = { "sort" };
 		TextBuddy.executeCommand("mytestfile.txt", commandSort);
 		String[] commandDisplay = { "display" };
@@ -162,10 +162,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testSearchRegular() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 		String[] command = { "search", "over" };
 		String expected = "1. jumped over the moon";
 		assertEquals(expected,
@@ -174,10 +174,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testSearchNoMatch() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 		String[] command = { "search", "hello" };
 		String expected = "No matches";
 		assertEquals(expected,
@@ -186,10 +186,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testSearchEmpty() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 		String[] command = { "search" };
 		String expected = "Invalid arguments for search. Please enter a word after the 'search' word.";
 		assertEquals(expected,
@@ -198,10 +198,10 @@ public class TextBuddyTest {
 
 	@Test
 	public void testSearchMoreThanTwoArgs() {
-		String[] addCommands = { "add", "little brown fox" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands);
-		String[] addCommands2 = { "add", "jumped over the moon" };
-		TextBuddy.executeCommand("mytestfile.txt", addCommands2);
+		String[] firstAddCommand = { "add", "little brown fox" };
+		TextBuddy.executeCommand("mytestfile.txt", firstAddCommand);
+		String[] secondaddCommand = { "add", "jumped over the moon" };
+		TextBuddy.executeCommand("mytestfile.txt", secondaddCommand);
 		String[] command = { "search", "word", "abc" };
 		String expected = "Invalid arguments for search. Please enter a word after the 'search' word.";
 		assertEquals(expected,
