@@ -61,6 +61,9 @@ public class TextBuddy {
 	private static final String MESSAGE_DELETED = "deleted from %1$s: \"%2$s\"";
 	private static final String MESSAGE_CLEARED = "all content deleted from %1$s";
 	private static final String MESSAGE_FILEISEMPTY = "%1$s is empty";
+	
+	//file extension length including a '.'
+	private static final int FILE_EXTENSION_LENGTH = 4;
 
 	private static Scanner scanner = new Scanner(System.in);
 
@@ -234,10 +237,10 @@ public class TextBuddy {
 	private static void exitIfWrongFileFormat(String fileName) {
 		boolean isFileContainsADot = fileName.contains(".");
 		int fileExtLength = fileName.length() - fileName.indexOf(".");
-		String fileExt = fileName.substring(fileName.length() - 4,
+		String fileExt = fileName.substring(fileName.length() - FILE_EXTENSION_LENGTH,
 				fileName.length());
 
-		if (!(isFileContainsADot) || !(fileExtLength == 4)
+		if (!(isFileContainsADot) || !(fileExtLength == FILE_EXTENSION_LENGTH)
 				|| !(fileExt.equals(".txt"))) {
 			printErrorMessageAndExit("Wrong file format");
 		}
